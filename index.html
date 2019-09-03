@@ -63,7 +63,7 @@
                                     { view:"button", value:"Cancel", click: function() {
                                         $$("myform").clear();
                                     } },
-                                    { view:"button", value:"Login", css:"webix_primary", click: function() {
+                                    { view:"button", value:"Login", hotkey:"enter", css:"webix_primary", click: function() {
                                         if($$("myform").validate() == true){
                                             if($$("myform").getValues().email == "admin" && $$("myform").getValues().password == "admin"){
                                                 document.location.href = "dashboard.html";
