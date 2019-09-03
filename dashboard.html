@@ -1,0 +1,142 @@
+<html>
+    <head>
+        <title>Login</title>
+
+        <script type="text/javascript" src="webix/codebase/webix.js?v=6.4.5"></script>
+        <!-- <script type="text/javascript" src="webix/codebase/skin.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="webix/codebase//webix.css?v=6.4.5"> 
+        <script src="https://kit.fontawesome.com/32be70de05.js"></script>
+        <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8">
+
+    </head>
+    <body>
+            <script type="text/javascript">
+
+                webix.ready(function(){
+                    webix.ui({
+                        rows: [
+                            { view: "toolbar", height:60, padding:3 , elements: [
+                                {width : 10},
+                                { view: "button", type: "image", css:"webix_transparent", width: 60, image: "resources/logo.png"},
+                                {width : 5},
+                                { view: "label", label: "Flash Loyalty", css: {"font-size:" : "20px", "font-weight" : "bold"}},
+                                {},
+                                {view: "button", type: "image", width: 50, css:"webix_transparent", image:"resources/profile.png", popup:"profile_popup"},
+                                {width : 15}
+                            ]
+                            },
+                            { cols:[
+                                {
+                                    view: "sidebar",
+                                    multipleOpen: true,
+                                    data: [
+                                            {icon: "fas fa-store-alt", value: "<b>Vendors</b>",  data:[
+                                                { id: "view_vendors", value: "View Vendors"},
+                                                { id: "create_vendor", value: "Create New Vendor"}
+                                            ]},
+
+
+                                            {icon: "fas fa-certificate", value: "<b>Promotions</b>",  data:[
+                                                { id: "view_promotions", value: "View Promotions"},
+                                                { id: "create_promotion", value: "Create New Promotion"}
+                                            ]},
+
+                                            {icon: "fas fa-users", value: "<b>Parties</b>",  data:[
+                                                { id: "view_parties", value: "View Parties"},
+                                                { id: "create_party", value: "Create New Party"}
+                                            ]},
+
+                                            {icon: "fas fa-user-friends", value: "<b>Users</b>",  data:[
+                                                { id: "view_users", value: "View Users"},
+                                                { id: "create_user", value: "Create New User"}
+                                            ]},
+
+                                            {icon: "fas fa-chart-pie", value: "<b>Reports</b>",  data:[
+                                                { id: "vendor_report", value: "Vendor Report"},
+                                                { id: "party_report", value: "Party Report"},
+                                                { id: "promotions_report", value: "Promotions Report"}
+                                            ]},
+                                            {id: "system_params", icon: "fas fa-lightbulb", value:"<b>System Parameters</b>"}
+                                        ],
+                                    on:{
+                                        onAfterSelect: function(id){
+                                            if(id == "create_vendor"){
+                                                onCreateVendor();
+                                            }
+                                            else {
+                                                showNotImplemented();
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type : "clean",
+                                    rows : [
+                                    {
+                                        type : "clean",
+                                        cols: [
+                                            {width : 50},
+                                            {template : "<div onclick='showNotImplemented();' class='box orange'><img src='resources/icon_vendors.png' /><br /><br /><b>TOTAL VENDORS</b><br /><span>&nbsp;</span><p>548</div>"},
+                                            {template : "<div onclick='showNotImplemented();' class='box green'><img src='resources/icon_users.png' /><br /><br /><b>TOTAL PARTIES</b><br /><span>&nbsp;</span><p>237</div>"},
+                                            {template : "<div onclick='showNotImplemented();' class='box purple'><img src='resources/icon_promotions.png' /><br /><br /><b>TOTAL PROMOTIONS</b><br /><span>Current</span><p>109</div>"},
+                                            {width : 50}
+                                        ]
+                                    },{
+                                        type : "clean",
+                                        cols: [
+                                            {width : 50},
+                                            {template : "<div onclick='showNotImplemented();' class='box blue'><img src='resources/icon_upcoming.png' /><br /><br /><b>UPCOMING</b><br /><span>Vendor Renewals</span><p>86</div>"},
+                                            {template : "<div onclick='showNotImplemented();' class='box red'><img src='resources/icon_overdue.png' /><br /><br /><b>OVERDUE</b><br /><span>Vendor Renewals</span><p>55</div>"},
+                                            {},
+                                            {width : 50},
+                                        ]
+                                    },{height: 20}
+                                ]},
+                            ]},
+                            {
+                                template: "<div align='right' style='padding-right:15px;'>Copyright, All rights reserved.<div>", height : 30
+                            }
+                        ]
+                    });
+                });
+
+                webix.ui({
+                view:"popup",
+                id:"profile_popup",
+                width: 200,
+                height: 120,
+                body:{
+                    view:"menu", 
+                    layout:"y",
+                    scroll: false,
+                    data:[
+                            {id:"1", icon:"fas fa-user", name:"&nbsp;&nbsp;&nbsp;My Profile"},
+                            {id:"2", icon:"fas fa-cogs", name:"&nbsp;&nbsp;Settings"},
+                            {id:"3", icon:"fas fa-sign-out-alt", name:"&nbsp;&nbsp;&nbsp;Logout"}
+                        ],
+                    on:
+                    {
+					    onMenuItemClick: function(id){
+                            $$("profile_popup").hide();
+                            if(id == 3){
+                                document.location.href = "./";
+                                return
+                            }
+                            showNotImplemented()
+                        }
+				    },                        
+                    template:"<i class='#icon#'></i>#name#"
+                }
+                });
+            
+                function showNotImplemented(){
+                    webix.message("Not implemented yet...");
+                }
+
+                function onCreateVendor(){
+                    window.location.href = "create_vendor.html";
+                }
+
+            </script>
+    </body>
+</html>

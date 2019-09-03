@@ -1,0 +1,276 @@
+<html>
+    <head>
+        <title>Create Vendor</title>
+
+        <script type="text/javascript" src="webix/codebase/webix.js?v=6.4.5"></script>
+        <!-- <script type="text/javascript" src="webix/codebase/skin.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="webix/codebase//webix.css?v=6.4.5"> 
+        <script src="https://kit.fontawesome.com/32be70de05.js"></script>
+        <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8">
+
+    </head>
+    <body>
+            <script type="text/javascript">
+
+                webix.ready(function(){
+                    webix.ui({
+                        rows: [
+                            { view: "toolbar", height:60, padding:3 , elements: [
+                                {width : 10},
+                                { view: "button", type: "image", css:"webix_transparent", width: 60, image: "resources/logo.png", click:"onHomeSelection"},
+                                {width : 5},
+                                { view: "label", label: "Flash Loyalty", css: {"font-size:" : "20px", "font-weight" : "bold"}},
+                                {},
+                                {view: "button", type: "image", width: 50, css:"webix_transparent", image:"resources/profile.png", popup:"profile_popup"},
+                                {width : 15}
+                            ]
+                            },
+                            { cols:[
+                                {
+                                    view: "sidebar",
+                                    id:"sidebar",
+                                    multipleOpen: true,
+                                    data: [
+                                            {icon: "fas fa-store-alt", value: "<b>Vendors</b>", id:"vendors",  data:[
+                                                { id: "view_vendors", value: "View Vendors"},
+                                                { id: "create_vendors", value: "Create New Vendor", isSelected: true}
+                                            ]},
+
+
+                                            {icon: "fas fa-certificate", value: "<b>Promotions</b>",  data:[
+                                                { id: "view_promotions", value: "View Promotions"},
+                                                { id: "create_promotion", value: "Create New Promotion"}
+                                            ]},
+
+                                            {icon: "fas fa-users", value: "<b>Parties</b>",  data:[
+                                                { id: "view_parties", value: "View Parties"},
+                                                { id: "create_party", value: "Create New Party"}
+                                            ]},
+
+                                            {icon: "fas fa-user-friends", value: "<b>Users</b>",  data:[
+                                                { id: "view_users", value: "View Users"},
+                                                { id: "create_user", value: "Create New User"}
+                                            ]},
+
+                                            {icon: "fas fa-chart-pie", value: "<b>Reports</b>",  data:[
+                                                { id: "vendor_report", value: "Vendor Report"},
+                                                { id: "party_report", value: "Party Report"},
+                                                { id: "promotions_report", value: "Promotions Report"}
+                                            ]},
+                                            {id: "system_params", icon: "fas fa-lightbulb", value:"<b>System Parameters</b>"}
+                                        ],
+                                    on:{
+                                        onAfterSelect: function(id){
+                                            if(id == "create_vendors"){
+                                                // onCreateVendor();
+                                            }
+                                            else{
+                                                showNotImplemented();
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    type:"clean",
+                                    rows : [
+                                    { height: 20 },
+                                    {
+                                        template : "<b style='font-size:20px; padding-left:50px;'>Create New Party</b>",
+                                        height : 30
+                                    },
+                                    {
+                                        view:"form",
+                                        id:"main_form",
+                                        name: "main_form",
+                                        complexData:true,
+                                        scroll:true,
+                                        paddingX: 50,
+                                        elements: [
+                                                { template:"Personal", type:"section"},
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"ID", value:"75783", disabled:true, labelWidth: 120 },
+                                                        { width : 50 },
+                                                        {}
+                                                    ]
+                                                },
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"First Name", name:"first_name", value:"", labelWidth: 120, required:true },
+                                                        { width : 50 },
+                                                        { view:"text", label:"Last Name", name:"last_name", value:"", labelWidth: 120, required:true }
+                                                    ]
+                                                },
+                                                {
+                                                    cols: [
+                                                        { view:"datepicker", label:"Date of Birth", name: "dob", value:"", labelWidth: 120, required:true},
+                                                        { width : 50 },
+                                                        { view:"datepicker", label:"Registration Date", name:"registration_date", value:"", labelWidth: 120, required:true}
+                                                    ]
+                                                },
+                                                { template:"Type", type:"section"},
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"Membership Type", disabled:true, value:"Membership Type A", labelWidth: 120 },
+                                                        { width : 50},
+                                                        { view:"combo", label:"Party Type", value:"", name:"party_type", labelWidth: 120, options:["Party Type 1", "Party Type 2", "Party Type 3"] }
+                                                    ]
+                                                },
+                                                { template:"Contact Info", type:"section"},
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"Email", value:"", name:"email", labelWidth: 120, required:true },
+                                                        { width : 50},
+                                                        { view:"text", label:"Phone", value:"", name:"phone", labelWidth: 120, required:true }
+                                                    ]
+                                                },
+                                                { template:"Address", type:"section"},
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"Address 1", value:"", name:"address_1", labelWidth: 120, required:true },
+                                                        { width : 50},
+                                                        { view:"text", label:"Address 2", value:"", name:"address_2", labelWidth: 120 }
+                                                    ]
+                                                },
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"City", value:"", name:"city", labelWidth: 120, required:true },
+                                                        { width : 50},
+                                                        { view:"text", label:"Postal Code", value:"", name:"postal_code", labelWidth: 120, required:true }
+                                                    ]
+                                                },
+                                                {
+                                                    cols: [
+                                                        { view:"text", label:"Provice/State", value:"", name:"state", labelWidth: 120, required:true },
+                                                        { width : 50},
+                                                        { view:"combo", label:"Country", value:"", labelWidth: 120, name:"country", options:["Pakistan", "Canada", "United States"], required:true }
+                                                    ]
+                                                },
+                                                { template:"Additional", type:"section"},
+                                                {
+                                                    cols: [
+                                                        { view:"switch", label:"Referral? ", value:"", name:"switch_referral", labelWidth: 120, name:"switch-referral",
+                                                        on:{
+                                                            onChange: function(newv,oldv){
+                                                                if(newv == true){
+                                                                    $$("refered-by").show();
+                                                                }
+                                                                else {
+                                                                    $$("refered-by").hide();
+                                                                }
+                                                                $$("refered-by").focus();
+                                                            }
+                                                        }
+                                                         },
+                                                        { width : 50},
+                                                        {}
+                                                    ]
+                                                },
+                                                {
+                                                    id:"refered-by",
+                                                    hidden: true,
+                                                    cols: [
+                                                        { view:"combo", label:"Refer by ", value:"Vendor", name:"refer_by", labelWidth: 120, options:["Vendor", "Party"], 
+                                                            on: {
+                                                                onChange: function(value){
+                                                                    if(value == "Party"){
+                                                                        $$("search-party").show();
+                                                                        $$("slt-vendor").hide();
+                                                                    }
+                                                                    else {
+                                                                        $$("slt-vendor").show();
+                                                                        $$("search-party").hide();
+                                                                    }
+                                                                }
+                                                            }
+                                                         },
+                                                        { width : 50},
+                                                        { view:"search", label:"Search Party", value:"", name:"search_party", labelWidth: 120, id:"search-party", hidden: true},
+                                                        { view:"combo", label:"Select Vendor", value:"Vendor 1", name: "slt_vendor", labelWidth: 120, options:["Vendor 1", "Vendor 2", "Vendor 3"], id:"slt-vendor" }
+                                                    ]
+                                                },
+                                                { height : 5 },
+                                                {
+                                                    cols: [
+                                                        {},
+                                                        {},
+                                                        {},
+                                                        { view:"button", value:"Cancel", css:"button_cancel", click: function(){
+                                                            $$("main_form").clear();
+                                                        }},
+                                                        { width: 5 },
+                                                        { view:"button", value:"Save", css:"webix_primary", click: function(){
+                                                            if($$("main_form").validate() == false){
+                                                                // extended initialization
+                                                                webix.message({
+                                                                    text:"Some fields are missing",
+                                                                    type:"error"
+                                                                });
+                                                            }
+                                                        }}
+                                                    ]
+                                                },
+                                                { height: 10 }
+                                            ]
+                                    },
+                                    { height: 1 }
+                                    ]
+                                },
+                            ]},
+                            {
+                                template: "<div align='right' style='padding-right:15px;'>Copyright, All rights reserved.<div>", height : 30
+                            }
+                        ]
+                    });
+                    $$("sidebar").open("vendors");
+                    $$("sidebar").select("create_vendors");
+                });
+
+                webix.ui({
+                view:"popup",
+                id:"profile_popup",
+                width: 200,
+                height: 120,
+                body:{
+                    view:"menu", 
+                    layout:"y",
+                    scroll: false,
+                    data:[
+                            {id:"1", icon:"fas fa-user", name:"&nbsp;&nbsp;&nbsp;My Profile"},
+                            {id:"2", icon:"fas fa-cogs", name:"&nbsp;&nbsp;Settings"},
+                            {id:"3", icon:"fas fa-sign-out-alt", name:"&nbsp;&nbsp;&nbsp;Logout"}
+                        ],
+                    on:
+                    {
+					    onMenuItemClick: function(id){
+                            $$("profile_popup").hide();
+                            if(id == 1){
+                                onProfileSelection();
+                                return;
+                            }
+                            if(id == 3){
+                                onLogoutSelection();
+                                return;
+                            }
+                            showNotImplemented()
+                        }
+				    },                        
+                    template:"<i class='#icon#'></i>#name#"
+                }
+                });
+
+                function showNotImplemented(){
+                    webix.message("Not implemented yet...");
+                }
+
+                function onHomeSelection(){
+                    window.location.href = "dashboard.html";
+                }
+
+                function onLogoutSelection(){
+                    window.location.href = "index.html";
+                }
+
+            </script>
+    </body>
+</html>
