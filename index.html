@@ -65,7 +65,15 @@
                                     } },
                                     { view:"button", value:"Login", css:"webix_primary", click: function() {
                                         if($$("myform").validate() == true){
-                                            document.location.href = "dashboard.html";
+                                            if($$("myform").getValues().email == "admin" && $$("myform").getValues().password == "admin"){
+                                                document.location.href = "dashboard.html";
+                                            }
+                                            else {
+                                                webix.message({
+                                                                    text:"Invalid username/password",
+                                                                    type:"error"
+                                                                });
+                                            }
                                         }
                                     } }
                                 ]},
