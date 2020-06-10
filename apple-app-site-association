@@ -1,15 +1,13 @@
 {
-    "applinks": {
-        "apps": [],
-        "details": [
-            {
-                "appID": "EVBP64DZCV.com.readyeducation.reuniversity",
-                "paths": ["/ready"]
-            },
-            {
-                "appID": "23L7G2DMCH.com.oohlala.portagecollege",
-                "paths": ["/portage"]
-            }
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": “JHGFJHHYX.com.facebook.ios",
+        "paths": [
+          "*"
         ]
-    }
+      }
+    ]
+  }
 }
