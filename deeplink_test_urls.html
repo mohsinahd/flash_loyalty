@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0" />
+    <title>Site Name</title>
+    <style>@media screen and (max-device-width:480px){body{-webkit-text-size-adjust:none}}</style>
+    <script>
+    //Sample based on the info found in those links:
+    //https://tune.docs.branch.io/sdk/deep-linking-to-your-mobile-app-from-your-website/#android
+    //https://developer.chrome.com/multidevice/android/intents
+    //https://github.com/zxing/zxing/blob/master/android/AndroidManifest.xml
+    // WHAT WE NEED TO DEEP LINK TO THE ANDROID APP:
+    // * the app ID
+    // * the app's registered https domain + path, in this example "readyeducation.com/check_in_path"
+    // * the app's registered custom scheme, in this example "readyscheme"
+    // * the app's registered custom scheme host, in this example "ready-beta"
+    </script>
+</head>
+<body>
+    <a href="https://play.google.com/store/apps/details?id=com.readyeducation.generic.beta">Download the app</a>
+    <br><br>
+
+    <a href="https://ready-beta.m.campusapp.com/wrong_path?my_param=my_value_https">Open HTTPS URL</a>
+    <br><br>
+    <a href="ready-beta://ready-beta?my_param=my_value_rawscheme">Open raw scheme</a>
+    <br><br>
+    <a href="intent://ready-beta?my_param=my_value_intent#Intent;scheme=readybeta;package=com.readyeducation.generic.beta;S.browser_fallback_url=https%3A%2F%2Fwww.readyeducation.com;end">Open with chrome intent</a>
+    <br><br>
+
+    <a href="https://ready-beta.m.campusapp.com/cea?ref=ea%247XegxxMu7RYfBfP4Cs526ZhO6sbe3Xxd">Campus event attendance deep link (URL)</a>
+    <br><br>
+    <a href="ready-beta://ready-beta?ref=ea%247XegxxMu7RYfBfP4Cs526ZhO6sbe3Xxd">Campus event attendance deep link (Scheme)</a>
+    <br><br>
+    <a href="intent://ready-beta?ref=ea%247XegxxMu7RYfBfP4Cs526ZhO6sbe3Xxd#Intent;scheme=ready-beta;package=com.readyeducation.generic.beta;S.browser_fallback_url=https%3A%2F%2Fwww.readyeducation.com;end">Campus event attendance deep link (Intent)</a>
+    <br><br>
+</body>
+</html>
